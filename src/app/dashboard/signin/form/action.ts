@@ -59,8 +59,9 @@ export async function handleSignIn(
 
   const session = await lucia.createSession(existingUser.id, {});
   const sessionCookie = await lucia.createSessionCookie(session.id);
+  const cookieStore = await cookies();
 
-  cookies().set(
+  cookieStore.set(
     sessionCookie.name,
     sessionCookie.value,
     sessionCookie.attributes
